@@ -11,9 +11,10 @@ closes = {"(": ")", "{": "}", "[": "]", '"': '"', "'": "'", "<": ">"}
 
 
 def close(open):
-    keyboard.write(closes[open])
-    sleep(0.2)
+    keyboard.write(')')
+    keyboard.release("shift")
     keyboard.send("left")
+    keyboard.press("shift")
 
 
 # add_word_listener("(", insert_closed_bracket,triggers=['typing'])
