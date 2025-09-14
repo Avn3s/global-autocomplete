@@ -1,6 +1,5 @@
 import keyboard
 from time import sleep
-from pyperclip import paste
 
 
 def comment():
@@ -16,7 +15,7 @@ def close(open):
     keyboard.send("left")
     keyboard.press("shift")
 
-
+print("Welcome to AutoCloser")
 # add_word_listener("(", insert_closed_bracket,triggers=['typing'])
 keyboard.add_hotkey("shift+9", close, args=["("])
 
