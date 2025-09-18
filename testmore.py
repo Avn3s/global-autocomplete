@@ -34,8 +34,7 @@ def _insert_closing_pair(event):
 
 
 def main():
-    print("Auto‑bracket helper is running.")
-    print("Press ESC to exit.\n")
+    print("AutoEase is running.")
     keyboard.hook(_insert_closing_pair)
 
     keyboard.wait()
