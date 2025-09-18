@@ -10,14 +10,14 @@ closes = {"(": ")", "{": "}", "[": "]", '"': '"', "'": "'", "<": ">"}
 
 
 def close(open):
-    keyboard.write(')')
-    keyboard.release("shift")
+    keyboard.write(closes[open])
     keyboard.send("left")
-    keyboard.press("shift")
 
 print("Welcome to AutoCloser")
 # add_word_listener("(", insert_closed_bracket,triggers=['typing'])
-keyboard.add_hotkey("shift+9", close, args=["("])
+#keyboard.add_hotkey("(", close, args=["("])
+for open_bracket in closes.keys():
+    keyboard.on_press_key(open_bracket, lambda e, b=open_bracket: close(b))
 
-keyboard.add_abbreviation("*mail", "astarcys7@proton.me")
+keyboard.add_abbreviation("@@", "astarcys7@proton.me")
 keyboard.wait()
