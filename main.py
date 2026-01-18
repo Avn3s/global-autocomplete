@@ -1,5 +1,6 @@
-import threading
+from threading import Thread
 import keyboard
+from orjson import loads
 
 PAIRS = {
     '(': ')',
@@ -9,6 +10,9 @@ PAIRS = {
     "'": "'",
     "<": '>',
 }
+
+with open("abbreviations.json") as file:
+    ABS=loads(file.read())
 
 def _insert_closing_pair(event):
     """
@@ -30,16 +34,13 @@ def _insert_closing_pair(event):
         keyboard.release('shift')
         keyboard.send('left')
 
-    threading.Thread(target=_type_closing, daemon=True).start()
+    Thread(target=_type_closing, daemon=True).start()
 
 
-def main():
-    print("AutoEase is running.")
-    keyboard.hook(_insert_closing_pair)
+print("AutoEase is running.")
+keyboard.hook(_insert_closing_pair)
+for ab in ABS:
+    keyboard.add_abbreviation(ab,ABS[ab])
 
-    keyboard.wait()
-    print("\nShutting down. Bye!")
-
-
-if __name__ == "__main__":
-    main()
+keyboard.wait()
+print("\nShutting down. Bye!")
